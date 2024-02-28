@@ -47,12 +47,14 @@
    sudo make -j4 
    ```
 9. Install the kernel modules.
-   `sudo make -j4 modules_install`
-10. Install the kernel.
+   ```
+   sudo make -j4 modules_install
+   ```
+11. Install the kernel.
     ```
     sudo make install
     ```
-11. Add kernel command line parameters.
+12. Add kernel command line parameters.
     ```
     sudo nano /etc/default/grub
     ```
