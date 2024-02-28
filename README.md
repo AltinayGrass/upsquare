@@ -1,5 +1,5 @@
 # upsquare
-5.15 preemth_rt kernel config for upsquare 
+5.15 preempt_rt kernel config for upsquare 
 
 1. Great working directory
    ```
@@ -40,6 +40,7 @@
    CONFIG_MODULE_SIG_FORCE=n
    CONFIG_MODULE_SIG_KEY=""
    #CONFIG_X86_X32 is not set
+   CONFIG_R8169=m
    ```
 8. Build the kernel (note: this can take some time).
    ```
@@ -65,3 +66,6 @@
     ```
     sudo update-grub
     ```
+
+    ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
+
