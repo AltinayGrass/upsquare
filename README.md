@@ -1,5 +1,5 @@
 # UP Squared
-5.15 preempt_rt kernel config for UP Square from aaeon 
+5.15 preempt_rt kernel config for UP Squared from Aaeon 
 
 1. Great working directory
    ```
