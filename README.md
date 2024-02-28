@@ -52,20 +52,66 @@
    sudo make -j4 modules_install
    ```
 11. Install the kernel.
-    ```
-    sudo make install
-    ```
+   ```
+   sudo make install
+   ```
 12. Add kernel command line parameters.
-    ```
-    sudo nano /etc/default/grub
-    ```
-
-    ```
+   ```
+   sudo nano /etc/default/grub
+   ```
+   ```
     GRUB_CMDLINE_LINUX_DEFAULT="quiet splash clocksource=tsc tsc=reliable nmi_watchdog=0 idle=pull hpet=disable irqaffinity=0-2 isolcpus=3 i915.enable_dc=0 i915.disable_power_well=0 processor.max_cstate=0 intel_idle.max_cstate=0 intel_pstate=disable"
-    ```
-    ```
-    sudo update-grub
-    ```
+   ```
+   ```
+   sudo update-grub
+   ```
 
-    ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
+   ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
 
+13. Setup sources for the EtherCAT Master.
+   ```
+   git clone https://gitlab.com/etherlab.org/ethercat.git
+   cd ethercat
+   git checkout stable-1.5
+   sudo rm /usr/bin/ethercat
+   sudo rm /etc/init.d/ethercat
+   ./bootstrap  # to create the configure script
+   ```
+14. Configure, build and install libs and kernel modules.
+   ```
+   ./configure --prefix=/usr/local/etherlab  --disable-8139too --disable-eoe --enable-generic --enable-r8169 --enable-hrtimer
+   make all modules
+   sudo make modules_install install
+   sudo depmod
+   ```
+15. Configure system.
+   ```
+   sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
+   sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
+   sudo mkdir -p /etc/sysconfig
+   sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
+   ```
+16. Create a new udev rule.
+   ```
+   sudo gedit /etc/udev/rules.d/99-EtherCAT.rules
+   ```
+   containing:
+   ```
+   KERNEL=="EtherCAT[0-9]*", MODE="0666"
+   ```
+17. Configure the network adapter for EtherCAT.
+   ```
+   sudo gedit /etc/sysconfig/ethercat
+   ```
+   containing:
+   ```
+   MASTER0_DEVICE="xx:xx:xx:xx:xx:d6"
+   DEVICE_MODULES="r8169"
+   ```
+18. Now you can start the EtherCAT master.
+   ```
+   sudo /etc/init.d/ethercat start
+   ```
+   it should print 
+   
+   `Starting EtherCAT master 1.5.2  done`
