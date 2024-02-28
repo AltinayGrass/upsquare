@@ -1,4 +1,4 @@
-# upsquare
+# UP Squared
 5.15 preempt_rt kernel config for upsquare 
 
 1. Great working directory
