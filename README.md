@@ -26,8 +26,10 @@
    make menuconfig
    ```
 5. Activate “Fully Preemptible Kernel (Real-Time)” option from “General setup” / “Preemption Model” then SAVE and EXIT.
+   
    <img width="662" alt="linux-kernel-config-fully-preemptible" src="https://github.com/AltinayGrass/upsquare/assets/97592357/eff53f19-4393-4e0b-850e-14c5c029fe18">
-6. Sure about below parameters.
+
+7. Sure about below parameters.
    ```
    CONFIG_HIGH_RES_TIMERS=y
    CONFIG_CPU_ISOLATION=y
@@ -39,18 +41,18 @@
    CONFIG_MODULE_SIG_KEY=""
    #CONFIG_X86_X32 is not set
    ```
-7. Build the kernel (note: this can take some time).
+8. Build the kernel (note: this can take some time).
    ```
    sudo make clean
    sudo make -j4 
    ```
-8. Install the kernel modules.
+9. Install the kernel modules.
    `sudo make -j4 modules_install`
-9. Install the kernel.
+10. Install the kernel.
     ```
     sudo make install
     ```
-10. Add kernel command line parameters.
+11. Add kernel command line parameters.
     ```
     sudo nano /etc/default/grub
     ```
