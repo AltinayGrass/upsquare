@@ -22,7 +22,7 @@
    ```
    cp /boot/config-5.15.0-97-generic .config
    sudo apt update
-   sudo apt install make gcc libncurses-dev libssl-dev flex libelf-dev bison
+   sudo apt install make gcc libncurses-dev libssl-dev flex libelf-dev bison zstd build-essential libnuma-dev
    make menuconfig
    ```
 5. Activate “Fully Preemptible Kernel (Real-Time)” option from “General setup” / “Preemption Model” then SAVE and EXIT.
