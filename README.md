@@ -66,7 +66,7 @@
       sudo update-grub
       ```
 
-   ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
+    ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
 
 11. Setup sources for the EtherCAT Master.
       ```
