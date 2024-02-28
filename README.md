@@ -29,7 +29,7 @@
    
    <img width="662" alt="linux-kernel-config-fully-preemptible" src="https://github.com/AltinayGrass/upsquare/assets/97592357/eff53f19-4393-4e0b-850e-14c5c029fe18">
 
-7. Sure about below parameters.
+6. Sure about below parameters.
    ```
    CONFIG_HIGH_RES_TIMERS=y
    CONFIG_CPU_ISOLATION=y
@@ -42,20 +42,20 @@
    #CONFIG_X86_X32 is not set
    CONFIG_R8169=m
    ```
-8. Build the kernel (note: this can take some time).
+7. Build the kernel (note: this can take some time).
    ```
    sudo make clean
    sudo make -j4 
    ```
-9. Install the kernel modules.
+8. Install the kernel modules.
    ```
    sudo make -j4 modules_install
    ```
-11. Install the kernel.
+9. Install the kernel.
    ```
    sudo make install
    ```
-12. Add kernel command line parameters.
+10. Add kernel command line parameters.
    ```
    sudo nano /etc/default/grub
    ```
@@ -68,7 +68,7 @@
 
    ![plot](https://github.com/AltinayGrass/upsquare/assets/97592357/ad0a71a7-bf85-413b-8327-753bfe6441b3)
 
-13. Setup sources for the EtherCAT Master.
+11. Setup sources for the EtherCAT Master.
    ```
    git clone https://gitlab.com/etherlab.org/ethercat.git
    cd ethercat
@@ -77,21 +77,21 @@
    sudo rm /etc/init.d/ethercat
    ./bootstrap  # to create the configure script
    ```
-14. Configure, build and install libs and kernel modules.
+12. Configure, build and install libs and kernel modules.
    ```
    ./configure --prefix=/usr/local/etherlab  --disable-8139too --disable-eoe --enable-generic --enable-r8169 --enable-hrtimer
    make all modules
    sudo make modules_install install
    sudo depmod
    ```
-15. Configure system.
+13. Configure system.
    ```
    sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
    sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
    sudo mkdir -p /etc/sysconfig
    sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
    ```
-16. Create a new udev rule.
+14. Create a new udev rule.
    ```
    sudo gedit /etc/udev/rules.d/99-EtherCAT.rules
    ```
@@ -99,7 +99,7 @@
    ```
    KERNEL=="EtherCAT[0-9]*", MODE="0666"
    ```
-17. Configure the network adapter for EtherCAT.
+15. Configure the network adapter for EtherCAT.
    ```
    sudo gedit /etc/sysconfig/ethercat
    ```
@@ -108,7 +108,7 @@
    MASTER0_DEVICE="xx:xx:xx:xx:xx:d6"
    DEVICE_MODULES="r8169"
    ```
-18. Now you can start the EtherCAT master.
+16. Now you can start the EtherCAT master.
    ```
    sudo /etc/init.d/ethercat start
    ```
