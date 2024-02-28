@@ -115,3 +115,7 @@
    it should print 
    
    `Starting EtherCAT master 1.5.2  done`
+
+   Then you can run servo_positing with ethercat servo
+
+   `taskset -c 3 sudo chrt --rr 99 ./servo_pos 3000`
